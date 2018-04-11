@@ -227,9 +227,10 @@ module GooglePlaces
     # @see https://developers.google.com/maps/documentation/places/supported_types List of supported types
     def self.spots_by_pagetoken(options = {})
       if options[:from_query]
+        puts "DEBUG"
         request = new(NEARBY_PAGETOKEN_URL, options)
       else
-        request = new(PAGETOKEN_URL, options)
+        request = new(NEARBY_PAGETOKEN_URL, options)
       end
       request.parsed_response
     end
