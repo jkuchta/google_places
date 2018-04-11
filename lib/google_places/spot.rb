@@ -277,10 +277,18 @@ module GooglePlaces
       exclude = options.delete(:exclude) || []
       exclude = [exclude] unless exclude.is_a?(Array)
 
-      options = {
-          :pagetoken => pagetoken,
-          :key => api_key
-      }
+      if options[:from_query]
+        options = {
+            :pagetoken => pagetoken,
+            :key => api_key,
+            :from_query => true
+        }
+      else
+        options = {
+            :pagetoken => pagetoken,
+            :key => api_key,
+        }
+      end
 
       request(:spots_by_pagetoken, false, exclude, options)
     end
